@@ -16,29 +16,36 @@ import PKHUD
 class NowPlayingViewController: UIViewController, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     
     var movies: [[String: Any]] = []
     var refreshControl: UIRefreshControl!
     
-    let alertController = UIAlertController(title: "Title", message: "Message", preferredStyle: .alert)
-    
+    let alert = UIAlertController(title: "Warning", message: "No internet connection", preferredStyle: .alert)
+    /*
     class Connectivity {
         class func isConnectedToNet() -> Bool {
             return NetworkReachabilityManager()!.isReachable
         }
     }
+ */
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        /*
         if Connectivity.isConnectedToNet() {
-            present(alertController, animated: true) {
-                // optional code for what happens after the alert controller has finished presenting
-            }
+            present(alert, animated: true, completion: nil)
         }
+         */
         
-        activityIndicator.startAnimating()
+        //activityIndicator.startAnimating()
+        HUD.dimsBackground = false
+        HUD.allowsInteraction = false
+        
+        HUD.flash(.progress, onView: tableView, delay: 0.7) { finished in
+            // Completion Handler
+            HUD.flash(.success, onView: self.tableView)
+        }
 
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(NowPlayingViewController.didPullToRefresh(_:)), for: .valueChanged)
@@ -47,7 +54,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
 
         tableView.dataSource = self
         self.tableView.rowHeight = 200
-        
+
         fetchMovies()
     }
     
@@ -73,7 +80,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
                 self.movies = movies
                 self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
-                self.activityIndicator.stopAnimating()
+                //self.activityIndicator.stopAnimating()
             }
         }
         task.resume()
