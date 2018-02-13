@@ -14,37 +14,45 @@ import PKHUD
 
 
 class NowPlayingViewController: UIViewController, UITableViewDataSource {
-
+    
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     
     var movies: [[String: Any]] = []
     var refreshControl: UIRefreshControl!
     
-    let alertController = UIAlertController(title: "Title", message: "Message", preferredStyle: .alert)
+    let alert = UIAlertController(title: "Warning", message: "No internet connection", preferredStyle: .alert)
+    /*
+     class Connectivity {
+     class func isConnectedToNet() -> Bool {
+     return NetworkReachabilityManager()!.isReachable
+     }
+     }
+     */
     
-    class Connectivity {
-        class func isConnectedToNet() -> Bool {
-            return NetworkReachabilityManager()!.isReachable
-        }
-    }
-    
+    // to commit 
     override func viewDidLoad() {
         super.viewDidLoad()
+        /*
+         if Connectivity.isConnectedToNet() {
+         present(alert, animated: true, completion: nil)
+         }
+         */
         
-        if Connectivity.isConnectedToNet() {
-            present(alertController, animated: true) {
-                // optional code for what happens after the alert controller has finished presenting
-            }
+        //activityIndicator.startAnimating()
+        HUD.dimsBackground = false
+        HUD.allowsInteraction = false
+        
+        HUD.flash(.progress, onView: tableView, delay: 0.7) { finished in
+            // Completion Handler
+            HUD.flash(.success, onView: self.tableView)
         }
         
-        activityIndicator.startAnimating()
-
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(NowPlayingViewController.didPullToRefresh(_:)), for: .valueChanged)
         
         tableView.insertSubview(refreshControl, at: 0)
-
+        
         tableView.dataSource = self
         self.tableView.rowHeight = 200
         
@@ -73,12 +81,12 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
                 self.movies = movies
                 self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
-                self.activityIndicator.stopAnimating()
+                //self.activityIndicator.stopAnimating()
             }
         }
         task.resume()
     }
-
+    
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -103,21 +111,30 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         return cell
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as! UITableViewCell
+        if let indexPath = tableView.indexPath(for: cell) {
+            let movie = movies[indexPath.row]
+            let detailViewController = segue.destination as! DetailViewController
+            detailViewController.movie = movie
+        }
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
