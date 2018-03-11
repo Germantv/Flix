@@ -12,7 +12,8 @@ class SuperHeroViewController: UIViewController, UICollectionViewDataSource {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var movies: [[String: Any]] = []
+    //var movies: [[String: Any]] = []
+    var movies: [Movie] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,12 +37,7 @@ class SuperHeroViewController: UIViewController, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PosterCell", for: indexPath) as! PosterCell
-        let movie = movies[indexPath.item]
-        if let posterPathString = movie["poster_path"] as? String {
-            let baseURLString = "https://image.tmdb.org/t/p/w500"
-            let posterURL = URL(string: baseURLString + posterPathString)!
-            cell.posterImageView.af_setImage(withURL: posterURL)
-        }
+        cell.movie = movies[indexPath.item]
         return cell
     }
     
@@ -61,7 +57,7 @@ class SuperHeroViewController: UIViewController, UICollectionViewDataSource {
                 //if got data back --> need to parse it
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 let movies = dataDictionary["results"] as! [[String: Any]]
-                self.movies = movies
+                self.movies = Movie.movies(dictionaries: movies)
                 self.collectionView.reloadData()
                 //self.refreshControl.endRefreshing()
                 //self.activityIndicator.stopAnimating()

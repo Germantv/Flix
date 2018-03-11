@@ -18,7 +18,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     
     
-    var movies: [[String: Any]] = []
+    var movies: [Movie] = []
     var refreshControl: UIRefreshControl!
     
     let alert = UIAlertController(title: "Warning", message: "No internet connection", preferredStyle: .alert)
@@ -64,27 +64,12 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     }
     
     func fetchMovies() {
-        let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
-        
-        let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
-        
-        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
-        
-        let task = session.dataTask(with: request) { (data, response, error) in
-            //this will run when the network request returns, network requests are asynchronous.
-            if let error = error {
-                print(error.localizedDescription)
-            }else if let data = data {
-                //if got data back --> need to parse it
-                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                let movies = dataDictionary["results"] as! [[String: Any]]
+        MovieApiManager().nowPlayingMovies { (movies: [Movie]?, error: Error?) in
+            if let movies = movies {
                 self.movies = movies
                 self.tableView.reloadData()
-                self.refreshControl.endRefreshing()
-                //self.activityIndicator.stopAnimating()
             }
         }
-        task.resume()
     }
     
     
@@ -95,19 +80,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
-        
-        let movie = movies[indexPath.row]
-        let title = movie["title"] as! String
-        let overview = movie["overview"] as! String
-        cell.titleLabel.text = title
-        cell.overviewLabel.text = overview
-        
-        let posterPathString = movie["poster_path"] as! String
-        let baseURLString = "https://image.tmdb.org/t/p/w500"
-        
-        let posterURL = URL(string: baseURLString + posterPathString)!
-        cell.posterImageView.af_setImage(withURL: posterURL)
-        
+        cell.movie = movies[indexPath.row]
         return cell
     }
     

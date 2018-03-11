@@ -10,6 +10,8 @@
 		1B72EFBE6F59C83588F1254A /* Pods_Wk1_Flix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE396370DC8518D90D8E12E /* Pods_Wk1_Flix.framework */; };
 		4DFBA799D7BF5C13956E7EEB /* Pods_Wk1_FlixTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 251129A41D7EB9CC79E71019 /* Pods_Wk1_FlixTests.framework */; };
 		9C7CCE6DC0C9766A44464E3A /* Pods_Wk1_FlixUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58CF1EA59955216F0BCA9E62 /* Pods_Wk1_FlixUITests.framework */; };
+		F218B32620530B0E00FC7C82 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = F218B32520530B0E00FC7C82 /* Movie.swift */; };
+		F218B3282055EFC900FC7C82 /* MovieApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F218B3272055EFC900FC7C82 /* MovieApiManager.swift */; };
 		F24CBD0B2032437700556D68 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24CBD0A2032437700556D68 /* DetailViewController.swift */; };
 		F24CBD0F2033C23700556D68 /* PosterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24CBD0E2033C23700556D68 /* PosterCell.swift */; };
 		F24CBD112033C29300556D68 /* SuperHeroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24CBD102033C29300556D68 /* SuperHeroViewController.swift */; };
@@ -51,6 +53,8 @@
 		95765A5B81E1FEA3B9A1BCA0 /* Pods-Wk1_FlixTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wk1_FlixTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wk1_FlixTests/Pods-Wk1_FlixTests.release.xcconfig"; sourceTree = "<group>"; };
 		9FF32B06466252365F702B29 /* Pods-Wk1_FlixUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wk1_FlixUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wk1_FlixUITests/Pods-Wk1_FlixUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BEA6CE1D51AE8C62CDCAF3C2 /* Pods-Wk1_FlixUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wk1_FlixUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wk1_FlixUITests/Pods-Wk1_FlixUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F218B32520530B0E00FC7C82 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		F218B3272055EFC900FC7C82 /* MovieApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieApiManager.swift; sourceTree = "<group>"; };
 		F24CBD0A2032437700556D68 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F24CBD0E2033C23700556D68 /* PosterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCell.swift; sourceTree = "<group>"; };
 		F24CBD102033C29300556D68 /* SuperHeroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperHeroViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +179,8 @@
 				F2CDA968202868E300966FE3 /* Assets.xcassets */,
 				F2CDA96A202868E300966FE3 /* LaunchScreen.storyboard */,
 				F2CDA96D202868E300966FE3 /* Info.plist */,
+				F218B32520530B0E00FC7C82 /* Movie.swift */,
+				F218B3272055EFC900FC7C82 /* MovieApiManager.swift */,
 			);
 			path = Wk1_Flix;
 			sourceTree = "<group>";
@@ -507,10 +513,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F218B32620530B0E00FC7C82 /* Movie.swift in Sources */,
 				F24CBD112033C29300556D68 /* SuperHeroViewController.swift in Sources */,
 				F2CDA990202900C600966FE3 /* NowPlayingViewController.swift in Sources */,
 				F24CBD0F2033C23700556D68 /* PosterCell.swift in Sources */,
 				F2CDA962202868E300966FE3 /* AppDelegate.swift in Sources */,
+				F218B3282055EFC900FC7C82 /* MovieApiManager.swift in Sources */,
 				F2CDA99220290F4E00966FE3 /* MovieCell.swift in Sources */,
 				F24CBD0B2032437700556D68 /* DetailViewController.swift in Sources */,
 			);
