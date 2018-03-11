@@ -1,4 +1,48 @@
 # Flix
+
+# Lab 3 - *Flix_AutoLayout*
+
+**Flix** is a movies app displaying box office and top rental DVDs using [The Movie Database API](http://docs.themoviedb.apiary.io/#).
+
+Time spent: **10** hours spent in total
+
+## User Stories
+
+The following **required** user stories are complete:
+
+- The following screens use AutoLayout to adapt to various orientations and screen sizes
+   - [x] Movie feed view (+3pt)
+   - [x] Detail view (+2pt)
+
+The following **stretch** user stories are implemented:
+
+- [ ] Dynamic Height Cells (+1)
+- [ ] Collection View AutoLayout (+2)
+
+The following **additional** user stories are implemented:
+
+- [ ] List anything else that you can get done to improve the app functionality! (+1-3pts)
+
+Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
+
+1. I would like to discuss how to get a constraint so that the colors dont go past the text and hugs the label width.
+2. I would like to discuss further detail as to programmatically adjusting layout and also how to better approach debugging autolayout issues.
+
+## Video Walkthrough
+
+Here's a walkthrough of implemented user stories:
+
+<img src='https://i.imgur.com/FkBKgL4.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
+## Notes
+
+Describe any challenges encountered while building the app:
+
+I could not get any constraint to work at first. Then I began messing with other red constraints that apparently I should not have touched and then all my labels and images got squished down. I then tred moving on to the next assignment but when I started that, the labels were also squished. I finally got help from TA and fixed constraints but still had a lot of weird errors when adding the >= for the bottom constraint for the overview label on the movies controller.
+
+
 # Project 1 - *Flix*
 
 **Flix** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
@@ -90,24 +134,21 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 Describe any challenges encountered while building the app.
 
 
-# Lab 3 - *Flix_AutoLayout*
+
+# Lab 5 - *Flix*
 
 **Flix** is a movies app displaying box office and top rental DVDs using [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **X** hours spent in total
+Time spent: **2** hours spent in total
 
 ## User Stories
 
 The following **required** user stories are complete:
 
-- The following screens use AutoLayout to adapt to various orientations and screen sizes
-   - [ ] Movie feed view (+3pt)
-   - [ ] Detail view (+2pt)
-
-The following **stretch** user stories are implemented:
-
-- [ ] Dynamic Height Cells (+1)
-- [ ] Collection View AutoLayout (+2)
+- [ ] Create a movie model (+2pt)
+- [ ] Implement the movie model (+2pt)
+- [ ] Implement property observers (+2pt)
+- [ ] Create a basic API Client (+2pt)
 
 The following **additional** user stories are implemented:
 
@@ -132,7 +173,7 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2018] [German Flores]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -145,4 +186,3 @@ Describe any challenges encountered while building the app.
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-
