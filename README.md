@@ -163,6 +163,8 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
+As you can see, the data for the movies is collected since were able to display them and behind the phone simulator is shown some of the new files added to move the code over from the view controller.
+
 <img src='https://i.imgur.com/c5vrKxG.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
